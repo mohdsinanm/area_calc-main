@@ -58,7 +58,7 @@ def ui():
     if st.button("Calculate"):
         if total_wires != 0 and diameter_of_wire != 0:
             st.session_state["results"] = calc(total_wires,diameter_of_wire,no_of_duct_per_row, diametr_of_duct, distance_between_duct,bountary_dist,percentage_capacity)
-            with st.container(height=100,border=True):
+            with st.container(height=60,border=True):
                 st.markdown(f"**Area = {st.session_state['results']['Area']}**")
 
             st.dataframe(pl.DataFrame(data= st.session_state["results"]).transpose(include_header=True).rename({"column":"Parameter","column_0":"Value"}),use_container_width=True)
