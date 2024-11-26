@@ -51,8 +51,8 @@ def ui():
     diameter_of_wire = st.number_input("Diameter of wire")
     no_of_duct_per_row = st.number_input("Number of duct per row",value=3)
     diametr_of_duct = st.number_input("Diameter of duct",value=150)
-    distance_between_duct = st.number_input("Distance between ducts",value=250)
-    bountary_dist = st.number_input("Distance between duct and boundary",value=225)
+    distance_between_duct = st.number_input("Distance between ducts",value=100)
+    bountary_dist = st.number_input("Distance between duct and boundary",value=150)
     percentage_capacity = st.number_input("Percenatge filling",value=50)
 
     if st.button("Calculate"):
@@ -76,7 +76,7 @@ st.set_page_config(
 )
 
 def main():
-    st.header("Area calc")
+    st.header("DUCT BANK")
     ui()
 
 main()
