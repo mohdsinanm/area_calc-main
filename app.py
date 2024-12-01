@@ -58,8 +58,18 @@ def ui():
     if st.button("Calculate"):
         if total_wires != 0 and diameter_of_wire != 0:
             st.session_state["results"] = calc(total_wires,diameter_of_wire,no_of_duct_per_row, diametr_of_duct, distance_between_duct,bountary_dist,percentage_capacity)
-            with st.container(height=60,border=True):
-                st.markdown(f"**Area = {st.session_state['results']['Area']}**")
+            with st.container(height=120,border=True):
+                st.markdown(f"**Height = {st.session_state['results']['Height']}**")
+                st.markdown(f"**Width = {st.session_state['results']['Width']}**")
+            ducts  = st.session_state['results']["Total number of ducts"]
+            
+            with st.expander("Ducts"):
+                for i in range(st.session_state['results']["Number of total rows"]):
+                    if ducts >= no_of_duct_per_row:
+                        st.write("⚪ "*no_of_duct_per_row)
+                        ducts -= no_of_duct_per_row
+                    else:
+                        st.write("⚪ "*ducts)
 
             st.dataframe(pl.DataFrame(data= st.session_state["results"]).transpose(include_header=True).rename({"column":"Parameter","column_0":"Value"}),use_container_width=True)
         else:
@@ -76,7 +86,7 @@ st.set_page_config(
 )
 
 def main():
-    st.header("DUCT BANK")
+    st.header("DUCT BANK CALCULATION")
     ui()
 
 main()
