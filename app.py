@@ -1,6 +1,9 @@
 import streamlit as st
 import polars as pl 
 import math 
+import streamlit.components.v1 as components
+from h import draaw_circle
+
 
 def calc_area_circle(diameter):
     return math.pi*pow((diameter/2),2)
@@ -54,7 +57,24 @@ def ui():
     distance_between_duct = st.number_input("Distance between ducts",value=100)
     bountary_dist = st.number_input("Distance between duct and boundary",value=150)
     percentage_capacity = st.number_input("Percenatge filling",value=50)
+    
+    with st.expander("Measurement details"):
 
+        components.html(draaw_circle(diametr_of_duct,distance_between_duct,bountary_dist ), height=350)
+        legend = """
+                <div>
+                <p>
+                <span style="color: red;  margin-left: 15px "> &#9609;</span> Distance between duct and boundary 
+                </p>
+                <p>
+                <span style="color: green;  margin-left: 15px "> &#9609;</span> Distance between ducts
+                </p>
+                <p>
+                <span style="color: black;  margin-left: 15px "> &#9609;</span> Diameter of duct
+                </div>
+            """
+
+        st.markdown(legend, unsafe_allow_html=True)
     if st.button("Calculate"):
         if total_wires != 0 and diameter_of_wire != 0:
             st.session_state["results"] = calc(total_wires,diameter_of_wire,no_of_duct_per_row, diametr_of_duct, distance_between_duct,bountary_dist,percentage_capacity)
