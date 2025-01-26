@@ -1,4 +1,7 @@
 
+def calculate_cable_dist(number_of_cables, diameter, cable_to_cale_dist):
+    return (number_of_cables * diameter) + (cable_to_cale_dist * (number_of_cables - 1))
+
 def draaw_circle(diametr_of_duct,distance_between_duct,bountary_dist ):
     style = """<style>
             .box {
